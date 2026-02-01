@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aaron Ishimaru, DPT</title>
     <meta name="description" content="Aaron Ishimaru - Web developer specializing in fast, secure Netlify apps, AI workflows, and system design.">
-    
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Shippori+Mincho:wght@400;600;800&family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/Favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -22,7 +21,7 @@
     <header id="site-header">
         <div class="header-top">
             <div class="logo-container">
-                <img src="assets/Logo2.png" alt="Clan Crest" id="interactive-logo">
+                <img src="assets/Logo2.png" alt="Logo">
             </div>
             <div class="name-container">
                 <div class="brand-name">Aaron Ishimaru <span class="credential">DPT</span></div>
@@ -53,7 +52,7 @@
                         <button class="value-pill" data-desc="When I make decisions I think of more than myself. I do my best to read the room and acknowledge what would be best for the team.">Thoughtful Decisions</button>
                         <button class="value-pill" data-desc="When it’s time to get the job done I am a catalyst for zeroing in on the goal and executing with maximum efficiency.">Focused energy</button>
                     </div>
-                    <div id="value-description" class="value-description-box">Select a value above to see details.</div>
+                    <div id="value-description" class="value-description-box"></div>
                 </div>
             </div>
             <div class="hero-img reveal">
@@ -79,7 +78,7 @@
             <div class="reveal">
                 <div class="training-box">
                     <img class="slide active" src="assets/Hawaii.png" alt="Hawaii">
-                    <img class="slide" src="assets/Eldorado.png" alt="Eldorado">
+                    <img class="slide" src="assets/Eldorado.png" alt="Climbing">
                     <img class="slide" src="assets/Swimteam.png" alt="Swimteam">
                     <img class="slide" src="assets/Bike.png" alt="Bike">
                     <img class="slide" src="assets/Run.png" alt="Run">
@@ -93,9 +92,9 @@
         </section>
 
         <section class="section container reveal">
-            <div style="text-align: center; padding: 40px 0;">
-                <h2>Coming soon in the following week: My Work</h2>
-                <h3 style="margin-top: 20px; font-style: italic; opacity: 0.8; font-weight: 500; font-family: var(--font-body);">
+            <div style="text-align: center; padding: 32px 0;">
+                <h2 style="margin-bottom: 16px;">Coming soon in the following week: My Work</h2>
+                <h3 style="font-style: italic; opacity: 0.6; font-weight: 500; font-family: var(--font-body);">
                     "I am building a skillset to be a human swiss army knife for startups."
                 </h3>
             </div>
@@ -103,51 +102,42 @@
     </main>
 
     <footer id="site-footer">
-        <div class="footer-center reveal">
+        <div class="footer-cta-container reveal">
             <h2>Build Incredible Things.</h2>
             <button class="btn-creative contact-trigger">Contact Me</button>
         </div>
         <div class="footer-bottom-row">
             <div class="copyright-wrapper">
-                <button id="studioBtn" class="btn-ghost">STUDIO</button>
                 <div class="copyright">Designed by Aaron Ishimaru &copy; 2026</div>
-                <div class="copyright">Iteration #300 & something...</div>
+                <div class="copyright" style="opacity: 0.4;">Iteration #300 & something...</div>
             </div>
             <img src="assets/Logo2.png" alt="Logo" class="footer-logo">
         </div>
     </footer>
 
     <div class="modal" id="contactModal">
-        <div class="contact-pad-container">
-            <button class="close-modal" id="closeContact">×</button>
-            <h3>Contact</h3>
-            <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 20px;">Tell me what you’d like to discuss — I’ll reply within 48 hours.</p>
+        <div class="contact-card">
+            <button class="close-modal">×</button>
+            <div class="contact-header">
+                <h3>Contact</h3>
+                <p>Reply within 48 hours.</p>
+            </div>
             <form name="contact" method="POST" data-netlify="true">
-                <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" required></div>
-                <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" required></div>
-                <div class="form-group"><label>Message</label><textarea name="message" class="form-control" rows="3" required></textarea></div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="message" rows="4" required placeholder="Tell me about your project..."></textarea>
+                </div>
                 <button type="submit" class="submit-btn">Send Message</button>
             </form>
         </div>
-    </div>
-
-    <div class="modal" id="codeModal">
-        <div class="code-pad-container">
-            <button class="close-modal">×</button>
-            <div class="code-display" id="codeDisplay">----</div>
-            <div class="keypad-grid">
-                <button class="key">1</button><button class="key">2</button><button class="key">3</button>
-                <button class="key">4</button><button class="key">5</button><button class="key">6</button>
-                <button class="key">7</button><button class="key">8</button><button class="key">9</button>
-                <button class="key-action" id="clrKey">CLR</button><button class="key">0</button><button class="key-action" id="entKey">ENT</button>
-            </div>
-            <div id="codeMsg" style="margin-top:15px; font-family:'VT323'; color:#dc2626; text-align:center;"></div>
-        </div>
-    </div>
-
-    <div id="broken-overlay">
-        <h1 class="broken-text">Great, You Broke It.</h1>
-        <button onclick="location.reload()" class="repair-btn">Repair System</button>
     </div>
 
     <script src="main.js"></script>
