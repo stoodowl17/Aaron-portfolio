@@ -6,7 +6,7 @@
     --font-head: 'Shippori Mincho', serif;
     --font-body: 'Manrope', sans-serif;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
-    --grid-margin: 48px;
+    --edge-margin: 48px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,29 +20,39 @@ body { background: var(--bg-color); color: var(--text-primary); font-family: var
 .orb-1 { top: -10%; left: -5%; width: 50vw; height: 50vw; background: radial-gradient(circle, #0071e3, #4facfe); }
 .orb-2 { bottom: -10%; right: -5%; width: 60vw; height: 60vw; background: radial-gradient(circle, #ff2d55, #fee140); }
 @keyframes float { to { transform: translate(40px, -40px); } }
+.texture-overlay { position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; }
 
 /* REVEALS */
 .reveal { opacity: 0; transform: translateY(20px); transition: 1s var(--ease); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* STRUCTURE */
-.container { max-width: 1100px; margin: 0 auto; padding: 0 var(--grid-margin); }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 var(--edge-margin); }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
 .section { padding: 80px 0; }
 
-/* HEADER */
+/* FULL BLEED HEADER */
 header { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(255,255,255,0.7); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-.header-full-bleed { display: flex; justify-content: space-between; align-items: center; padding: 16px var(--grid-margin); position: relative; }
+.full-bleed-header { display: flex; justify-content: space-between; align-items: center; padding: 16px var(--edge-margin); position: relative; }
+
+.header-left { width: 120px; }
 .site-logo { width: 44px; height: 44px; object-fit: contain; }
-.header-center { position: absolute; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; }
+
+.header-center { position: absolute; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; text-align: center; }
 .brand-name { font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; line-height: 1; color: #000; }
 .brand-subtitle-dpt { font-family: var(--font-head); font-size: 0.85rem; font-weight: 400; opacity: 0.7; margin-top: 2px; }
+
 .nav-bar { margin-top: 8px; }
 .nav-links { display: flex; gap: 32px; list-style: none; }
 .nav-link { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; }
 .nav-link.active { color: #000; font-weight: 800; }
-.contact-btn-top { padding: 8px 18px; border: 1.5px solid #000; background: transparent; font-weight: 800; text-transform: uppercase; font-size: 0.65rem; cursor: pointer; transition: 0.3s; }
-.contact-btn-top:hover { background: #000; color: #fff; }
+
+.header-right { width: 120px; display: flex; justify-content: flex-end; }
+.contact-btn-global { 
+    padding: 8px 18px; border: 1.5px solid #000; background: transparent; 
+    font-weight: 800; text-transform: uppercase; font-size: 0.65rem; cursor: pointer; transition: 0.3s;
+}
+.contact-btn-global:hover { background: #000; color: #fff; }
 
 /* HERO */
 .hero { padding: 220px 0 60px; }
@@ -51,45 +61,40 @@ h1 { font-family: var(--font-head); font-size: clamp(2.5rem, 8vw, 4.5rem); margi
 .hero-poetic p { color: var(--text-muted); font-size: 1.15rem; margin-bottom: 24px; max-width: 70ch; }
 .hero-img-wrapper { border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05); }
 
-/* PILLS */
+/* VALUES */
 .values-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
 .value-pill { padding: 12px 24px; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 40px; background: #fff; color: #000; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; transition: 0.2s; cursor: pointer; }
 .value-pill.selected { background: #000; color: #fff; transform: translateY(2px); }
 .value-description-box { min-height: 80px; padding: 16px; border-left: 3px solid var(--accent); margin-top: 16px; font-size: 1rem; opacity: 0; transition: 0.4s; }
 .value-description-box.active { opacity: 1; }
 
-/* BENTO */
+/* ACHIEVEMENTS BENTO */
 .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-.bento-item { background: #fff; border: 1px solid rgba(0,0,0,0.08); padding: 28px; border-radius: 16px; font-size: 1rem; cursor: pointer; transition: 0.3s; }
+.bento-item { background: #fff; border: 1px solid rgba(0,0,0,0.08); padding: 28px; border-radius: 16px; font-size: 1rem; cursor: pointer; transition: 0.3s var(--ease); }
 .bento-item:hover { transform: translateY(-4px); border-color: var(--accent); }
 .bento-item.active-choice { background: #f5f5f7; border-color: #000; font-weight: 800; }
 
-/* COMING SOON CARD */
-.coming-soon-card { background: #fff; border: 1px solid rgba(0,0,0,0.05); border-radius: 24px; padding: 48px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.03); }
-.skill-boxes { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
-.skill-box { padding: 12px 24px; background: #f5f5f7; border-radius: 12px; font-weight: 700; font-size: 0.85rem; transition: 0.3s; border: 1px solid transparent; }
-.skill-box:hover { transform: translateY(-8px); border-color: var(--accent); background: #fff; }
-
-/* SLIDER ENGINE */
+/* SLIDER */
 .training-box { position: relative; height: 550px; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); background: #000; }
-.slide { position: absolute; inset: 0; opacity: 0; transition: 1s; object-fit: cover; width: 100%; height: 100%; }
+.slide { position: absolute; inset: 0; opacity: 0; transition: 1s var(--ease); object-fit: cover; width: 100%; height: 100%; }
 .slide.active { opacity: 1; }
 
-/* NEW: STRAVA SLIDE DESIGN */
-.strava-slide { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.strava-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7) blur(2px); }
-.strava-glass-overlay { position: relative; z-index: 2; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 32px; border-radius: 20px; }
-.strava-container { display: flex; gap: 24px; align-items: center; justify-content: center; transform: scale(0.85); } /* Scale ensures both fit in box */
+/* STRAVA DASHBOARD DESIGN */
+.strava-slide { display: flex; align-items: center; justify-content: center; position: relative; }
+.strava-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6) blur(2px); }
+.strava-overlay { position: relative; z-index: 2; background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 24px; }
+.strava-widgets { display: flex; flex-direction: column; gap: 16px; align-items: center; transform: scale(0.9); }
 
 .dots { display: flex; gap: 10px; justify-content: center; margin-top: 16px; }
-.dot { width: 35px; height: 4px; background: rgba(0,0,0,0.1); cursor: pointer; }
+.dot { width: 35px; height: 4px; background: rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s; }
 .dot.active { background: #000; }
 
 /* FOOTER */
 footer { padding: 48px 0; border-top: 1px solid rgba(0,0,0,0.05); background: rgba(255,255,255,0.5); }
-.footer-bottom-row { display: flex; justify-content: space-between; align-items: center; }
+.footer-full-bleed { display: flex; justify-content: space-between; align-items: center; }
+.footer-left { text-align: left; }
 .copy-main { font-weight: 700; font-size: 0.85rem; }
-.copy-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+.copy-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
 .footer-logo { width: 40px; opacity: 0.7; }
 
 /* MODAL */
@@ -99,11 +104,11 @@ footer { padding: 48px 0; border-top: 1px solid rgba(0,0,0,0.05); background: rg
 .close-modal { position: absolute; top: 20px; right: 20px; border: none; background: #f5f5f7; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; }
 
 @media (max-width: 900px) {
-    .header-full-bleed { padding: 16px 20px; }
-    .header-center { position: static; transform: none; margin: 12px 0; order: 3; width: 100%; }
-    .header-right { order: 2; }
+    .full-bleed-header { padding: 16px 20px; flex-wrap: wrap; }
+    .header-center { position: static; transform: none; width: 100%; order: 3; margin-top: 16px; }
+    .header-left, .header-right { width: auto; }
     .grid-2 { grid-template-columns: 1fr; gap: 32px; }
     .hero { padding-top: 160px; }
-    .training-box { height: 450px; }
-    .strava-container { flex-direction: column; transform: scale(0.65); }
+    .training-box { height: 400px; }
+    .strava-widgets { transform: scale(0.65); }
 }

@@ -12,24 +12,19 @@ const bentoBtns = document.querySelectorAll('.achievement-btn');
 function showSlide(n) {
     if(!slides.length) return;
     
-    // Remove active states
     slides.forEach(s => s.classList.remove('active'));
     dots.forEach(d => d.classList.remove('active'));
     bentoBtns.forEach(b => b.classList.remove('active-choice'));
 
-    // Set new index
     currentSlide = (n + slides.length) % slides.length;
 
-    // Apply active states
     slides[currentSlide].classList.add('active');
     dots[currentSlide].classList.add('active');
     
-    // Highlight corresponding bento item if it exists
     const currentBento = document.querySelector(`.achievement-btn[data-index="${currentSlide}"]`);
     if(currentBento) currentBento.classList.add('active-choice');
 }
 
-// 6-Second Auto-Play
 function startSlideTimer() {
     stopSlideTimer();
     slideTimer = setInterval(() => {
@@ -41,18 +36,15 @@ function stopSlideTimer() {
     clearInterval(slideTimer);
 }
 
-// Trigger: Click Bento Item
 bentoBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        stopSlideTimer(); // Stop auto-play on interaction
+        stopSlideTimer(); 
         const index = parseInt(btn.getAttribute('data-index'));
         showSlide(index);
-        // Resume auto-play after a longer pause (10s)
         setTimeout(startSlideTimer, 10000); 
     });
 });
 
-// Trigger: Dots
 dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
         stopSlideTimer();
@@ -61,7 +53,6 @@ dots.forEach((dot, i) => {
     });
 });
 
-// Initialize
 showSlide(0);
 startSlideTimer();
 
@@ -108,8 +99,8 @@ pills.forEach(pill => {
 
 // 5. MODAL
 const modal = document.getElementById('contactModal');
-document.querySelectorAll('.contact-trigger, .contact-btn-top').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+document.querySelectorAll('.contact-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     });
@@ -119,4 +110,4 @@ document.querySelector('.close-modal').addEventListener('click', () => {
     document.body.style.overflow = 'auto';
 });
 
-console.log("%c Strategic Design Operational ", "color: #0071e3; font-weight: bold; padding: 10px;");
+console.log("%c Engineered by Aaron Ishimaru ", "color: #0071e3; font-weight: bold; padding: 10px;");

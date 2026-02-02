@@ -18,7 +18,7 @@
     </div>
 
     <header id="site-header">
-        <div class="header-full-bleed">
+        <div class="full-bleed-header">
             <div class="header-left">
                 <img src="assets/Logo2.png" alt="Logo" class="site-logo">
             </div>
@@ -35,18 +35,21 @@
             </div>
 
             <div class="header-right">
-                <button class="contact-btn-top contact-trigger">Contact</button>
+                <button class="contact-btn-global contact-trigger">Contact Me</button>
             </div>
         </div>
     </header>
 
     <main id="site-main" class="container">
+        <!-- ABOUT SECTION -->
         <section id="about" class="hero grid-2">
             <div class="reveal">
                 <h1>Hello.</h1>
                 <div class="hero-poetic">
                     <p><span class="lead-in">My name is Aaron.</span> I am a Doctor of Physical Therapy with expertise on the musculoskeletal system and a background in competitive endurance sports (swim, bike, run). I have managed clients & complex data in healthcare systems, led teams, and organized a large fundraiser for nonprofits while earning a Doctorate and training full time.</p>
+                    
                     <p><span class="lead-in">I am shifting roles and building a skillset to become a human Swiss Army Knife at any health tech startup.</span> My mission is to improve the patient and provider experience in Healthcare by solving problems that lead to better outcomes for individual and community health.</p>
+
                     <p><span class="lead-in">I am skilled at understanding problems, working with people, and finding solutions to get measured results.</span> This plays out well when working with clients, and selling ideas. My work ethic is that of a trained endurance athlete: Strategy is calculated. Execution is everything. I compete to win, and winning for me means making Healthcare better for the people that I love, and the people who deserve quality care.</p>
                 </div>
 
@@ -64,6 +67,7 @@
             </div>
         </section>
 
+        <!-- ACHIEVEMENTS SECTION -->
         <section id="achievements" class="section">
             <div class="reveal">
                 <h2 style="margin-bottom: 32px;">Achievements</h2>
@@ -88,14 +92,12 @@
                     <img class="slide" src="assets/Ben.png" alt="Ben">
                     <img class="slide" src="assets/Bike.png" alt="Bike">
                     
-                    <!-- ENHANCED STRAVA DATA SLIDE -->
+                    <!-- STRAVA DASHBOARD SLIDE -->
                     <div class="slide strava-slide">
-                        <img src="assets/Downhillriding.png" class="strava-bg-img" alt="Downhill Riding">
-                        <div class="strava-glass-overlay">
-                            <div class="strava-container">
-                                <!-- Weekly Summary -->
+                        <img src="assets/Downhillriding.png" class="strava-bg" alt="Performance Data">
+                        <div class="strava-overlay">
+                            <div class="strava-widgets">
                                 <iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/98339467/activity-summary/f3aa17d3d64e53fb6b94498eb50a168c3385109b'></iframe>
-                                <!-- Latest Rides -->
                                 <iframe height='454' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/98339467/latest-rides/f3aa17d3d64e53fb6b94498eb50a168c3385109b'></iframe>
                             </div>
                         </div>
@@ -111,6 +113,7 @@
             </div>
         </section>
 
+        <!-- SKILLS SECTION -->
         <section class="section reveal">
             <div class="coming-soon-card">
                 <div class="card-content">
@@ -128,10 +131,13 @@
     </main>
 
     <footer id="site-footer">
-        <div class="footer-bottom-row container">
+        <div class="footer-full-bleed container">
             <div class="footer-left">
                 <p class="copy-main">Designed by Aaron Ishimaru &copy; 2026</p>
                 <p class="copy-sub">DPT & Health Technology</p>
+            </div>
+            <div class="footer-center">
+                <button class="contact-btn-global contact-trigger">Contact Me</button>
             </div>
             <div class="footer-right">
                 <img src="assets/Logo2.png" alt="Logo" class="footer-logo">
@@ -139,6 +145,7 @@
         </div>
     </footer>
 
+    <!-- CONTACT MODAL -->
     <div class="modal" id="contactModal">
         <div class="contact-card">
             <button class="close-modal">×</button>
