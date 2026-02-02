@@ -1,21 +1,47 @@
 /**
  * AARON ISHIMARU - PORTFOLIO CORE
- * Verified Apple Design Standards
+ * High-Performance Vanilla JS Refactor
  */
 
-// 1. REVEAL SYSTEM
-const observer = new IntersectionObserver((entries) => {
+// 1. SCROLL-SPY (NAV HIGHLIGHTING)
+const scrollSpy = () => {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let current = "";
+    sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes(current)) {
+            link.classList.add("active");
+        }
+    });
+};
+window.addEventListener("scroll", scrollSpy);
+
+// 2. INTERSECTION OBSERVER (REVEAL)
+const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if(entry.isIntersecting) entry.target.classList.add('visible');
     });
 }, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// 2. PILLS
+// 3. PILLS INTERACTION
 const pills = document.querySelectorAll('.value-pill');
 const descBox = document.getElementById('value-description');
+
 pills.forEach(pill => {
     pill.addEventListener('click', () => {
+        pills.forEach(p => p.classList.remove('selected'));
+        pill.classList.add('selected');
+        
         descBox.classList.remove('active');
         setTimeout(() => {
             descBox.innerText = pill.getAttribute('data-desc');
@@ -24,7 +50,7 @@ pills.forEach(pill => {
     });
 });
 
-// 3. SLIDER
+// 4. IMAGE SLIDER
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
@@ -41,23 +67,20 @@ if(slides.length > 0) {
     dots.forEach((dot, i) => dot.addEventListener('click', () => showSlide(i)));
 }
 
-// 4. MODALS
-const modal = document.getElementById('contactModal');
-document.querySelectorAll('.contact-trigger, .contact-btn-top').forEach(btn => {
-    btn.addEventListener('click', () => {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+// 5. MODALS
+const setupModal = (id, triggerClass) => {
+    const modal = document.getElementById(id);
+    document.querySelectorAll(`.${triggerClass}`).forEach(btn => {
+        btn.addEventListener('click', () => {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
     });
-});
-document.querySelector('.close-modal').addEventListener('click', () => {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-});
-window.onclick = (e) => {
-    if (e.target == modal) {
+    modal.querySelector('.close-modal').addEventListener('click', () => {
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
-    }
+    });
 };
+setupModal('contactModal', 'contact-trigger');
 
-console.log("%c Aaron Ishimaru | Strategic Health Tech ", "color: #0071e3; font-weight: bold; padding: 10px;");
+console.log("%c Aaron Ishimaru | Systems Built for Longevity ", "color: #0071e3; font-weight: bold; padding: 10px;");
