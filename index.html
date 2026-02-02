@@ -19,12 +19,10 @@
 
     <header id="site-header">
         <div class="header-full-bleed">
-            <!-- Absolute Top Left -->
             <div class="header-left">
                 <img src="assets/Logo2.png" alt="Logo" class="site-logo">
             </div>
 
-            <!-- Centered Stack -->
             <div class="header-center">
                 <div class="brand-name">Aaron Ishimaru</div>
                 <div class="brand-subtitle-dpt">DPT</div>
@@ -36,7 +34,6 @@
                 </nav>
             </div>
 
-            <!-- Absolute Top Right -->
             <div class="header-right">
                 <button class="contact-btn-top contact-trigger">Contact</button>
             </div>
@@ -44,7 +41,6 @@
     </header>
 
     <main id="site-main" class="container">
-        <!-- ABOUT -->
         <section id="about" class="hero grid-2">
             <div class="reveal">
                 <h1>Hello.</h1>
@@ -68,12 +64,10 @@
             </div>
         </section>
 
-        <!-- ACHIEVEMENTS -->
         <section id="achievements" class="section">
             <div class="reveal">
                 <h2 style="margin-bottom: 32px;">Achievements</h2>
                 <div class="bento-grid">
-                    <!-- Data-indices match the slider order below -->
                     <div class="bento-item achievement-btn" data-index="0">Moved to Oahu at 18.</div>
                     <div class="bento-item achievement-btn" data-index="1">Rock climbed in Colorado and reached the level of V6 & 5.12+.</div>
                     <div class="bento-item achievement-btn" data-index="2">Raced the 500yd & 1 mile distance in undergrad swimming.</div>
@@ -89,15 +83,21 @@
             <div class="reveal" style="margin-top: 64px;">
                 <div class="training-box">
                     <img class="slide active" src="assets/Hawaii.png" alt="Hawaii">
-                    <img class="slide" src="assets/Eldorado.png" alt="Eldorado">
-                    <img class="slide" src="assets/Swimteam.png" alt="Swimteam">
+                    <img class="slide" src="assets/Eldorado.png" alt="Climbing">
+                    <img class="slide" src="assets/Swimteam.png" alt="Swimming">
                     <img class="slide" src="assets/Ben.png" alt="Ben">
                     <img class="slide" src="assets/Bike.png" alt="Bike">
                     
-                    <!-- Special Strava Slide -->
+                    <!-- ENHANCED STRAVA DATA SLIDE -->
                     <div class="slide strava-slide">
-                        <div class="strava-embed-wrap">
-                            <iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/98339467/activity-summary/f3aa17d3d64e53fb6b94498eb50a168c3385109b'></iframe>
+                        <img src="assets/Downhillriding.png" class="strava-bg-img" alt="Downhill Riding">
+                        <div class="strava-glass-overlay">
+                            <div class="strava-container">
+                                <!-- Weekly Summary -->
+                                <iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/98339467/activity-summary/f3aa17d3d64e53fb6b94498eb50a168c3385109b'></iframe>
+                                <!-- Latest Rides -->
+                                <iframe height='454' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/98339467/latest-rides/f3aa17d3d64e53fb6b94498eb50a168c3385109b'></iframe>
+                            </div>
                         </div>
                     </div>
 
@@ -111,7 +111,6 @@
             </div>
         </section>
 
-        <!-- SKILLS -->
         <section class="section reveal">
             <div class="coming-soon-card">
                 <div class="card-content">
@@ -140,7 +139,6 @@
         </div>
     </footer>
 
-    <!-- MODAL -->
     <div class="modal" id="contactModal">
         <div class="contact-card">
             <button class="close-modal">×</button>
