@@ -79,23 +79,61 @@ h1 { font-family: var(--font-head); font-size: clamp(2.5rem, 8vw, 4.5rem); margi
 .slide { position: absolute; inset: 0; opacity: 0; transition: 1s var(--ease); object-fit: cover; width: 100%; height: 100%; }
 .slide.active { opacity: 1; }
 
-/* STRAVA DASHBOARD DESIGN */
+/* STRAVA DASHBOARD UPDATED */
 .strava-slide { display: flex; align-items: center; justify-content: center; position: relative; }
 .strava-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6) blur(2px); }
-.strava-overlay { position: relative; z-index: 2; background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 24px; }
-.strava-widgets { display: flex; flex-direction: column; gap: 16px; align-items: center; transform: scale(0.9); }
+.strava-overlay { position: relative; z-index: 2; background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 20px; }
+/* Modified to be side-by-side */
+.strava-widgets { display: flex; flex-direction: row; gap: 16px; align-items: center; justify-content: center; transform: scale(0.95); }
 
 .dots { display: flex; gap: 10px; justify-content: center; margin-top: 16px; }
 .dot { width: 35px; height: 4px; background: rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s; }
 .dot.active { background: #000; }
 
-/* FOOTER */
+/* SKILLS BOXES ("Coming Soon") */
+.coming-soon-card { margin-top: 64px; text-align: center; }
+.skill-boxes { display: flex; justify-content: center; gap: 24px; margin-top: 48px; flex-wrap: wrap; }
+.skill-box {
+    width: 200px;
+    height: 120px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition: transform 0.3s var(--ease), box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.skill-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+
+.empty-box {
+    /* Intentionally empty white box */
+}
+
+.filled-box {
+    background: #fff;
+    color: #000;
+    border: 1.5px solid #000;
+}
+
+/* FOOTER UPDATED */
 footer { padding: 48px 0; border-top: 1px solid rgba(0,0,0,0.05); background: rgba(255,255,255,0.5); }
-.footer-full-bleed { display: flex; justify-content: space-between; align-items: center; }
-.footer-left { text-align: left; }
+.footer-full-bleed { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+
+.footer-left { flex: 1; text-align: left; }
+.footer-center { flex: 1; text-align: center; display: flex; justify-content: center; }
+.footer-right { flex: 1; text-align: right; display: flex; justify-content: flex-end; }
+
 .copy-main { font-weight: 700; font-size: 0.85rem; }
 .copy-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
-.footer-logo { width: 40px; opacity: 0.7; }
+.footer-logo { width: 44px; opacity: 1; } /* Logo updated visibility */
 
 /* MODAL */
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(20px); z-index: 1000; display: none; justify-content: center; align-items: center; padding: 20px; }
@@ -103,6 +141,7 @@ footer { padding: 48px 0; border-top: 1px solid rgba(0,0,0,0.05); background: rg
 .contact-card { background: #fff; border-radius: 24px; padding: 40px; width: 100%; max-width: 480px; position: relative; }
 .close-modal { position: absolute; top: 20px; right: 20px; border: none; background: #f5f5f7; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; }
 
+/* RESPONSIVE */
 @media (max-width: 900px) {
     .full-bleed-header { padding: 16px 20px; flex-wrap: wrap; }
     .header-center { position: static; transform: none; width: 100%; order: 3; margin-top: 16px; }
@@ -110,5 +149,11 @@ footer { padding: 48px 0; border-top: 1px solid rgba(0,0,0,0.05); background: rg
     .grid-2 { grid-template-columns: 1fr; gap: 32px; }
     .hero { padding-top: 160px; }
     .training-box { height: 400px; }
-    .strava-widgets { transform: scale(0.65); }
+    
+    /* Responsive adjustment for strava: stack if too small */
+    .strava-widgets { flex-direction: column; transform: scale(0.65); gap: 10px; }
+    
+    /* Footer responsive */
+    .footer-full-bleed { flex-direction: column-reverse; gap: 24px; text-align: center; }
+    .footer-left, .footer-center, .footer-right { flex: auto; text-align: center; justify-content: center; }
 }
