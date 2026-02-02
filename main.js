@@ -2,29 +2,88 @@
  * AARON ISHIMARU - CORE SYSTEMS
  */
 
-// 1. SCROLLSPY (ACTIVE NAV HIGHLIGHTING)
+// 1. SLIDER ENGINE
+let currentSlide = 0;
+let slideTimer;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+const bentoBtns = document.querySelectorAll('.achievement-btn');
+
+function showSlide(n) {
+    if(!slides.length) return;
+    
+    // Remove active states
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    bentoBtns.forEach(b => b.classList.remove('active-choice'));
+
+    // Set new index
+    currentSlide = (n + slides.length) % slides.length;
+
+    // Apply active states
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+    
+    // Highlight corresponding bento item if it exists
+    const currentBento = document.querySelector(`.achievement-btn[data-index="${currentSlide}"]`);
+    if(currentBento) currentBento.classList.add('active-choice');
+}
+
+// 6-Second Auto-Play
+function startSlideTimer() {
+    stopSlideTimer();
+    slideTimer = setInterval(() => {
+        showSlide(currentSlide + 1);
+    }, 6000);
+}
+
+function stopSlideTimer() {
+    clearInterval(slideTimer);
+}
+
+// Trigger: Click Bento Item
+bentoBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        stopSlideTimer(); // Stop auto-play on interaction
+        const index = parseInt(btn.getAttribute('data-index'));
+        showSlide(index);
+        // Resume auto-play after a longer pause (10s)
+        setTimeout(startSlideTimer, 10000); 
+    });
+});
+
+// Trigger: Dots
+dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+        stopSlideTimer();
+        showSlide(i);
+        setTimeout(startSlideTimer, 10000);
+    });
+});
+
+// Initialize
+showSlide(0);
+startSlideTimer();
+
+// 2. SCROLLSPY
 const scrollSpy = () => {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
     let current = "";
-
     sections.forEach((section) => {
         const sectionTop = section.offsetTop;
         if (window.pageYOffset >= sectionTop - 250) {
             current = section.getAttribute("id");
         }
     });
-
     navLinks.forEach((link) => {
         link.classList.remove("active");
-        if (link.getAttribute("href").includes(current)) {
-            link.classList.add("active");
-        }
+        if (link.getAttribute("href").includes(current)) link.classList.add("active");
     });
 };
 window.addEventListener("scroll", scrollSpy);
 
-// 2. REVEAL SYSTEM (INTERSECTION OBSERVER)
+// 3. REVEALS
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if(entry.isIntersecting) entry.target.classList.add('visible');
@@ -32,14 +91,13 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// 3. PILL LOGIC (STATE MANAGEMENT)
+// 4. PILLS
 const pills = document.querySelectorAll('.value-pill');
 const descBox = document.getElementById('value-description');
 pills.forEach(pill => {
     pill.addEventListener('click', () => {
         pills.forEach(p => p.classList.remove('selected'));
         pill.classList.add('selected');
-        
         descBox.classList.remove('active');
         setTimeout(() => {
             descBox.innerText = pill.getAttribute('data-desc');
@@ -48,38 +106,17 @@ pills.forEach(pill => {
     });
 });
 
-// 4. IMAGE SLIDER
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
-function showSlide(n) {
-    if(!slides.length) return;
-    slides.forEach(s => s.classList.remove('active'));
-    dots.forEach(d => d.classList.remove('active'));
-    currentSlide = (n + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-}
-if(slides.length > 0) {
-    setInterval(() => showSlide(currentSlide + 1), 5000);
-    dots.forEach((dot, i) => dot.addEventListener('click', () => showSlide(i)));
-}
-
-// 5. MODAL SYSTEM
-const setupModal = (id, triggerClass) => {
-    const modal = document.getElementById(id);
-    document.querySelectorAll(`.${triggerClass}`).forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
+// 5. MODAL
+const modal = document.getElementById('contactModal');
+document.querySelectorAll('.contact-trigger, .contact-btn-top').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
     });
-    modal.querySelector('.close-modal').addEventListener('click', () => {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    });
-};
-setupModal('contactModal', 'contact-trigger');
+});
+document.querySelector('.close-modal').addEventListener('click', () => {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+});
 
-console.log("%c Strategic Architecture Operational ", "color: #0071e3; font-weight: bold; padding: 10px;");
+console.log("%c Strategic Design Operational ", "color: #0071e3; font-weight: bold; padding: 10px;");
